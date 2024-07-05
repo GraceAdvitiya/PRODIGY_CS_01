@@ -16,7 +16,7 @@ The decrpyt function works similar to the encrypt function but subtracts the shi
 ## Usage
 
 1. Encrypts the plaintext "PRODIGY INFOTECH" with a shift of 4 to "tvshmkc mrjsxigl".
-   '''
+   ```
    def encrypt(plaintext, key):
     ciphertext = ''
     for letter in plaintext:
@@ -31,9 +31,9 @@ The decrpyt function works similar to the encrypt function but subtracts the shi
         else:
             ciphertext += ' '
     return ciphertext
-   '''
+   ```
 3. Decrypts the encrypted text back to the original plaintext "prodigy infotech".
-   '''
+   ```
    def decrypt(ciphertext, key):
     plaintext = ''
     for letter in ciphertext:
@@ -48,7 +48,7 @@ The decrpyt function works similar to the encrypt function but subtracts the shi
         else:
             plaintext += ' '
     return plaintext
-   '''
+   ```
 
 ## Encrypting and Decrypting Messages
 
