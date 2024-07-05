@@ -1,21 +1,24 @@
 # PRODIGY_CS_01
 
-Welcome to PRODIGY_CS_01! This is a project that aims to [provide a brief description of your project].
+Welcome to PRODIGY_CS_01! This is a project that aims to allow users to input a message and a shift value to perform encryption and decryption.
 
-## Installation
+## Function
 
-To get started with PRODIGY_CS_01, follow these steps:
+The caesar cipher encryption function works on the following:
+1. Takes 'text' and 'shift' as inputs.
+2. Iterates through each character in the text.
+3. If the character is a letter, it calculates the shifted position and converts it back to a character.
+4. If the character is not a letter, it remains unchanged.
+5. Returns the encrypted text.
 
-1. Clone the repository: `git clone`
-2. Navigate to the project directory: `cd PRODIGY_CS_01`
-3. Install the dependencies: `npm install`
+The decrpyt function works similar to the encrypt function but subtracts the shift amount to reverse the encryption.
 
 ## Usage
 
-To use PRODIGY_CS_01, follow these steps:
+1. Encrypts the plaintext "PRODIGY INFOTECH" with a shift of 4 to "tvshmkc mrjsxigl".
+2. Decrypts the encrypted text back to the original plaintext "prodigy infotech".
 
-1. [Provide instructions on how to use your project]
-2. [Add any additional steps or information as needed]
+
 
 ## Encrypting and Decrypting Messages
 
@@ -27,22 +30,66 @@ In this project, we have included a Python file called `encryption.py` that allo
 4. Follow the prompts to enter the message you want to encrypt or decrypt.
 5. The program will output the encrypted or decrypted message.
 
-## Contributing
+## Code
 
-We welcome contributions from the community! If you'd like to contribute to PRODIGY_CS_01, please follow these guidelines:
+letters = 'abcdefghijklmnopqrstuvwxyz'
+num_letters = len(letters)
 
-1. Fork the repository
-2. Create a new branch: `git checkout -b feature/your-feature-name`
-3. Make your changes and commit them: `git commit -m 'Add your commit message'`
-4. Push your changes to your forked repository: `git push origin feature/your-feature-name`
-5. Submit a pull request
+def encrypt(plaintext, key):
+    ciphertext = ''
+    for letter in plaintext:
+        letter = letter.lower()
+        if letter != ' ':
+            index = letters.find(letter)
+            if index == -1:
+                ciphertext += letter
+            else:
+                new_index = (index + key) % num_letters
+                ciphertext += letters[new_index]
+        else:
+            ciphertext += ' '
+    return ciphertext
 
-## License
+def decrypt(ciphertext, key):
+    plaintext = ''
+    for letter in ciphertext:
+        letter = letter.lower()
+        if letter != ' ':
+            index = letters.find(letter)
+            if index == -1:
+                plaintext += letter
+            else:
+                new_index = (index - key) % num_letters
+                plaintext += letters[new_index]
+        else:
+            plaintext += ' '
+    return plaintext
 
-[Specify the license under which your project is distributed]
+print()
+print('*** CAESAR CIPHER ***')
+print()
 
-## Contact
+print('Do you want to encrypt or decrypt?')
+user_input = input('e/d: ').lower()
+print()
 
-If you have any questions or suggestions, feel free to reach out to us at [provide contact information].
+if user_input == 'e':
+    print('ENCRYPTION MODE SELECTED')
+    print()
+    key = int(input('Enter the key (1 through 26): '))
+    text = input('Enter the text to encrypt: ')
+    ciphertext = encrypt(text, key)
+    print(f'CIPHERTEXT: {ciphertext}')
+
+elif user_input == 'd':
+    print('DECRYPTION MODE SELECTED')
+    print()
+    key = int(input('Enter the key (1 through 26): '))
+    text = input('Enter the text to decrypt: ')
+    plaintext = decrypt(text, key)
+    print(f'PLAINTEXT: {plaintext}')
+## Output
+
+![image](https://github.com/GraceAdvitiya/PRODIGY_CS_01/assets/137154095/eb6562a5-7a7c-4ac1-bd8d-e52c3461429b)
 
 Happy coding!
